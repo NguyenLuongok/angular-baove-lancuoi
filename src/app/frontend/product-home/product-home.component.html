@@ -1,0 +1,139 @@
+<app-home-header></app-home-header>
+<div class="page-head_agile_info_w3l">
+  <div class="container">
+    <h3 *ngIf="category== null">Product</h3>
+    <h3 *ngIf="category!= null">{{category}}</h3>
+    <!--/w3_short-->
+    <div class="services-breadcrumb">
+      <div class="agile_inner_breadcrumb">
+
+        <ul class="w3_short">
+          <li><a routerLink="/">Home</a><i>|</i></li>
+          <li *ngIf="category== null">Product</li>
+          <li *ngIf="category!= null">{{category}}</li>
+        </ul>
+      </div>
+    </div>
+    <!--//w3_short-->
+  </div>
+</div>
+<!-- banner-bootom-w3-agileits -->
+<div class="banner-bootom-w3-agileits">
+  <div class="container">
+    <!-- mens -->
+    <div class="col-md-4 products-left">
+      <div class="filter-price">
+        <h3>Search <span>Product</span></h3>
+        <ul class="dropdown-menu6">
+          <li>
+            <input [(ngModel)]="searchText" (keyup)="load()" autocomplete="off" class="form-control" name="search" placeholder="Enter keywords" type="text">
+          </li>
+        </ul>
+      </div>
+      <div class="css-treeview" style="margin: 10px 0px">
+        <h4>Categories</h4>
+        <ul class="tree-list-pad">
+          <li>
+            <label for="item-0">
+            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+            <a style="padding: 0px;" routerLink="/product">All Product</a>
+            </label>
+          </li>
+          <li *ngFor="let category of categorys">
+            <input type="checkbox" checked="checked" id="item-0" />
+            <label for="item-0">
+              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+              <a style="padding: 0px;" routerLink="/category/{{category.id}}">{{category.name}}</a>
+            </label>
+          </li>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="col-md-8 products-right">
+      <h5>Product <span>Compare(0)</span></h5>
+      <div class="sort-grid">
+        <div class="sorting">
+          <h6>Sort By</h6>
+          <select class="frm-field required sect" id="country1" onchange="change_country(this.value)">
+            <option value="null">Default</option>
+            <option value="null">Name(A - Z)</option>
+            <option value="null">Name(Z - A)</option>
+            <option value="null">Price(High - Low)</option>
+            <option value="null">Price(Low - High)</option>
+            <option value="null">Model(A - Z)</option>
+            <option value="null">Model(Z - A)</option>
+          </select>
+          <div class="clearfix"></div>
+        </div>
+        <div class="sorting">
+          <h6>Showing</h6>
+          <select [(ngModel)]="pageSize" class="form-control" style="width: auto">
+            <option *ngIf="products?.length>=4" [ngValue]="4">4 product per page</option>
+            <option *ngIf="products?.length>=8"  [ngValue]="8">8 product per page</option>
+            <option *ngIf="products?.length>=12" [ngValue]="12">12 product per page</option>
+            <option [ngValue]="products?.length">All product per page</option>
+          </select>
+          <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="men-wear-top">
+
+        <div class="callbacks_container" id="top">
+          <ul class="rslides">
+            <li>
+              <img alt=" " style="height: 225px;width: 745px;" class="img-responsive" src="../../../assets/images/banner2.jpg"/>
+            </li>
+          </ul>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="resp-tabs-container">
+      <div class="single-pro">
+        <div *ngFor="let product of products | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize | filter:searchText"
+             class="col-md-3 product-men">
+          <div class="men-pro-item simpleCart_shelfItem">
+            <div class="men-thumb-item">
+              <img alt="" class="pro-image-front" height="235px" src="{{product.productImage}}" width="255px">
+              <img alt="" class="pro-image-back" height="235px" src="{{product.productImage}}" width="255px">
+              <div class="men-cart-pro">
+                <div class="inner-men-cart-pro">
+                  <a class="link-product-add-cart" routerLink="/product/{{product.id}}">Quick View</a>
+                </div>
+              </div>
+              <span *ngIf="product.productSale==0" class="product-new-top">New</span>
+              <span *ngIf="product.productSale!=0" class="product-new-top">{{product.productSale}}%</span>
+            </div>
+            <div class="item-info-product ">
+              <h4><a href="single.html">{{product.productName}}</a></h4>
+              <div class="info-product-price">
+                <span
+                  class="item_price" >
+                  {{product.productPrice - (product.productPrice / 100) * product.productSale| number}} VND</span>
+                <del style="font-size: 13px;" *ngIf="product.productSale!=0">{{product.productPrice| number}} VND</del>
+              </div>
+              <div>
+                <a class="hvr-outline-out button2" style="padding: 10px;font-weight: bold;color:aliceblue; " [routerLink]="['/cart',{id : product.id}]" >Add to cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+  <nav style=" text-align: center; padding: 50px;">
+    <!-- pagination-->
+    <ul class="pagination pagination-lg">
+      <ngb-pagination
+        [(page)]="page"
+        [collectionSize]="products?.length"
+        [pageSize]="pageSize">
+      </ngb-pagination>
+    </ul>
+  </nav>
+</div>
+<app-home-footer></app-home-footer>

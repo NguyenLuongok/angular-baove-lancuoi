@@ -1,0 +1,114 @@
+.top_nav_right li{
+  margin:  0;
+  list-style: none;
+}
+.top_nav_right li:hover > a{
+  text-decoration: none;
+}
+.top_nav_right > ul > li {
+  float: left;
+  display: inline-block;
+  position: relative;
+}
+.top_nav_right > ul > li > a{
+  padding: 15px 40px;
+
+  display: inline-block;
+  color: white;
+}
+.top_nav_right > ul > li:hover .sub-menu{
+  z-index: 1;
+  opacity: 1;
+}
+.sub-menu{
+  width: 400px;
+  padding: 5px 0px;
+  position: absolute;
+  top: 100%;
+  left: 0px;
+  z-index: -1;
+  opacity: 0;
+  transition:opacity linear 0.15s;
+}
+.sub-menu li {
+  display:block;
+  font-size:16px;
+}
+.sub-menu li a {
+  padding:10px 30px;
+  display:block;
+}
+.shopping-cart {
+  margin: 10px 0;
+  float: right;
+  background: white;
+  width: 400px;
+  position: relative;
+  border-radius: 3px;
+  padding: 20px;
+}
+.shopping-cart .shopping-cart-header {
+  border-bottom: 1px solid #E8E8E8;
+  padding-bottom: 15px;
+}
+.shopping-cart .shopping-cart-header .shopping-cart-total {
+  float: right;
+}
+.shopping-cart .shopping-cart-items {
+  padding-top: 20px;
+}
+.shopping-cart .shopping-cart-items li {
+  margin-bottom: 18px;
+}
+.shopping-cart .shopping-cart-items img {
+  float: left;
+  margin-right: 12px;
+}
+.shopping-cart .shopping-cart-items .item-name {
+  display: block;
+  padding-top: 10px;
+  font-size: 16px;
+}
+.shopping-cart .shopping-cart-items .item-price {
+  color: #6394F8;
+  margin-right: 8px;
+}
+.shopping-cart .shopping-cart-items .item-quantity {
+  color: #ABB0BE;
+}
+
+.shopping-cart:after {
+  bottom: 100%;
+  right: 90%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-bottom-color: white;
+  border-width: 8px;
+  margin-left: -6px;
+}
+
+.cart-icon {
+  color: #515783;
+  font-size: 24px;
+  margin-right: 7px;
+  float: left;
+}
+
+.buttonn {
+  background: #0099aa;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  display: block;
+  border-radius: 3px;
+  font-size: 16px;
+  margin: 25px 0 15px 0;
+}
+.button:hover {
+  background: #729ef9;
+}

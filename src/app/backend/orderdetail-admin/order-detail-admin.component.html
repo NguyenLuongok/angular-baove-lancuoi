@@ -1,0 +1,35 @@
+<!--mainpage chit-chating-->
+<div class="chit-chat-layer1">
+  <div class="col-md-12 chit-chat-layer1-left">
+    <div class="work-progres">
+      <div class="chit-chat-heading">
+        orderDetail Detail Manager
+      </div>
+      <div class="table-responsive" style="width: 100%">
+        <table class="table table-hover" id="myTable">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Sale</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let orderDetail of orderDetails index as i">
+            <td>{{i+1}}</td>
+            <td>
+              {{orderDetail.productName}}
+            </td>
+            <td>{{orderDetail.receiptItemPrice|number}} VND</td>
+            <td>{{orderDetail.receiptItemTotal}}</td>
+            <td>{{orderDetail.receiptItemSale}}%</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>

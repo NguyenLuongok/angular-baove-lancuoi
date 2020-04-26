@@ -1,0 +1,33 @@
+.signup-block select[type="text"], .signup-block select[type="text"] {
+  font-size: 0.9em;
+  padding: 10px 20px;
+  width: 100%;
+  color:#686967;
+  outline: none;
+  border: 1px solid #D3D3D3;
+  border-radius: 5px;
+  -ms-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  background:#F5F5F5;
+  margin: 0em 0em 1.5em 0em;
+}
+.signup-block textarea[type="text"], .signup-block textarea[type="text"] {
+  font-size: 0.9em;
+  padding: 10px 20px;
+  width: 100%;
+  color:#686967;
+  outline: none;
+  border: 1px solid #D3D3D3;
+  border-radius: 5px;
+  -ms-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  background:#F5F5F5;
+  margin: 0em 0em 1.5em 0em;
+}
+.invalid-feedback {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #dc3545;
+}

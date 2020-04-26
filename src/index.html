@@ -2,12 +2,107 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>AngularBaove</title>
+  <title>AssAngular</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://rawcdn.githack.com/NguyenLuongok/css-js-assigment/b21bd24beb879355c9ce1312164a974bd46ec758/css/flexslider.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="https://rawcdn.githack.com/NguyenLuongok/css-js-assigment/b21bd24beb879355c9ce1312164a974bd46ec758/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="https://ghcdn.rawgit.org/NguyenLuongok/css-js-ass-admin/master/css/demo-page.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="https://rawcdn.githack.com/NguyenLuongok/css-js-ass-admin/1a8915bbce0728c82c753de96d960b2857a8e735/css/examples.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="https://rawcdn.githack.com/NguyenLuongok/css-js-ass-admin/1a8915bbce0728c82c753de96d960b2857a8e735/css/hover.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="https://rawcdn.githack.com/NguyenLuongok/css-js-ass-admin/1a8915bbce0728c82c753de96d960b2857a8e735/css/magnific-popup.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="https://rawcdn.githack.com/NguyenLuongok/css-js-ass-admin/1a8915bbce0728c82c753de96d960b2857a8e735/css/style-admin.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="https://rawcdn.githack.com/NguyenLuongok/css-js-assigment/b21bd24beb879355c9ce1312164a974bd46ec758/css/easy-responsive-tabs.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="https://rawcdn.githack.com/NguyenLuongok/css-js-assigment/b21bd24beb879355c9ce1312164a974bd46ec758/css/jquery-ui.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="https://rawcdn.githack.com/NguyenLuongok/css-js-assigment/b21bd24beb879355c9ce1312164a974bd46ec758/css/team.css" rel="stylesheet" type="text/css" media="all" />
+  <script src="https://rawcdn.githack.com/NguyenLuongok/css-js-assigment/b21bd24beb879355c9ce1312164a974bd46ec758/js/modernizr.custom.js"></script>
+  <link href="https://rawcdn.githack.com/NguyenLuongok/css-js-assigment/b21bd24beb879355c9ce1312164a974bd46ec758/css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
-  <app-root></app-root>
+<app-root></app-root>
+<!-- js -->
+<script src="https://rawcdn.githack.com/NguyenLuongok/css-js-assigment/b21bd24beb879355c9ce1312164a974bd46ec758/js/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<script src="https://rawcdn.githack.com/NguyenLuongok/css-js-assigment/b21bd24beb879355c9ce1312164a974bd46ec758/js/modernizr.custom.js"></script>
+<!-- Custom-JavaScript-File-Links -->
+<!-- cart-js -->
+<script src="https://rawcdn.githack.com/NguyenLuongok/css-js-assigment/b21bd24beb879355c9ce1312164a974bd46ec758/js/minicart.min.js"></script>
+<script>
+  // Mini Cart
+  paypal.minicart.render({
+    action: '#'
+  });
+
+  if (~window.location.search.indexOf('reset=true')) {
+    paypal.minicart.reset();
+  }
+</script>
+
+<!-- //cart-js -->
+<!-- script for responsive tabs -->
+<script src="https://rawcdn.githack.com/NguyenLuongok/css-js-assigment/b21bd24beb879355c9ce1312164a974bd46ec758/js/easy-responsive-tabs.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#horizontalTab').easyResponsiveTabs({
+      type: 'default', //Types: default, vertical, accordion
+      width: 'auto', //auto or any width like 600px
+      fit: true,   // 100% fit in a container
+      closed: 'accordion', // Start closed if in accordion view
+      activate: function(event) { // Callback function if tab is switched
+        var $tab = $(this);
+        var $info = $('#tabInfo');
+        var $name = $('span', $info);
+        $name.text($tab.text());
+        $info.show();
+      }
+    });
+    $('#verticalTab').easyResponsiveTabs({
+      type: 'vertical',
+      width: 'auto',
+      fit: true
+    });
+  });
+</script>
+<!-- //script for responsive tabs -->
+<!-- stats -->
+<script src="https://rawcdn.githack.com/NguyenLuongok/css-js-assigment/b21bd24beb879355c9ce1312164a974bd46ec758/js/jquery.waypoints.min.js"></script>
+<script src="https://rawcdn.githack.com/NguyenLuongok/css-js-assigment/b21bd24beb879355c9ce1312164a974bd46ec758/js/jquery.countup.js"></script>
+<script>
+  $('.counter').countUp();
+</script>
+<!-- //stats -->
+<!-- start-smoth-scrolling -->
+<script src="https://rawcdn.githack.com/NguyenLuongok/css-js-assigment/b21bd24beb879355c9ce1312164a974bd46ec758/js/move-top.js"></script>
+<script src="https://rawcdn.githack.com/NguyenLuongok/css-js-assigment/b21bd24beb879355c9ce1312164a974bd46ec758/js/jquery.easing.min.js"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $(".scroll").click(function(event){
+      event.preventDefault();
+      $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+    });
+  });
+</script>
+<!-- here stars scrolling icon -->
+<script type="text/javascript">
+  $(document).ready(function() {
+    /*
+      var defaults = {
+      containerID: 'toTop', // fading element id
+      containerHoverID: 'toTopHover', // fading element hover id
+      scrollSpeed: 1200,
+      easingType: 'linear'
+      };
+    */
+
+    $().UItoTop({ easingType: 'easeOutQuart' });
+
+  });
+</script>
+<!-- //here ends scrolling icon -->
+
+
+<!-- for bootstrap working -->
+<script src="https://rawcdn.githack.com/NguyenLuongok/css-js-assigment/b21bd24beb879355c9ce1312164a974bd46ec758/js/bootstrap.js"></script>
 </body>
 </html>

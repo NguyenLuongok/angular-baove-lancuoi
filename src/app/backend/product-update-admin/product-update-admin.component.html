@@ -1,0 +1,68 @@
+<div class="inner-block ">
+  <div class="signup-main" style="float: left; width: 40%;margin-left: 120px;">
+    <div class="signup-head">
+      <h1>Update Product</h1>
+    </div>
+    <div class="signup-block">
+      <form [formGroup]="registerForm" (ngSubmit)="updateProduct()">
+        <label >Name</label>
+        <div *ngIf="submitted && f.productName.errors" class="invalid-feedback">
+          <div *ngIf="f.productName.errors.required">Name is required</div>
+        </div>
+        <input type="text" name="productName" formControlName="productName"  [ngClass]="{ 'is-invalid': submitted && f.productName.errors }" [(ngModel)]="product.productName" placeholder="Name"  required="">
+
+        <label >Price</label>
+        <div *ngIf="submitted && f.productPrice.errors" class="invalid-feedback">
+          <div *ngIf="f.productPrice.errors.required">Price is required</div>
+        </div>
+        <input type="text" name="productPrice" formControlName="productPrice" [ngClass]="{ 'is-invalid': submitted && f.productPrice.errors }" [(ngModel)]="product.productPrice"  placeholder="price" required="">
+
+        <label >Total</label>
+        <div *ngIf="submitted && f.productTotal.errors" class="invalid-feedback">
+          <div *ngIf="f.productTotal.errors.required">Total is required</div>
+        </div>
+        <input type="text" name="productTotal" formControlName="productTotal" [ngClass]="{ 'is-invalid': submitted && f.productTotal.errors }"  [(ngModel)]="product.productTotal"  placeholder="Total" required="">
+
+        <label >Product Images</label><br>
+        <div *ngIf="submitted && f.productImage.errors" class="invalid-feedback">
+          <div *ngIf="f.productImage.errors.required">Total is required</div>
+        </div>
+        <input type="text" name="productImage" formControlName="productImage" [ngClass]="{ 'is-invalid': submitted && f.productImage.errors }" [(ngModel)]="product.productImage"  placeholder="Please paste link images here" required="">
+
+        <label >Product Sale</label><br>
+        <div *ngIf="submitted && f.productSale.errors" class="invalid-feedback">
+          <div *ngIf="f.productSale.errors.required">Sale is required</div>
+        </div>
+        <input type="text" [ngClass]="{ 'is-invalid': submitted && f.productSale.errors }" formControlName="productSale" name="productSale" [(ngModel)]="product.productSale"  placeholder="sale" required="">
+
+        <label >Category</label><br>
+        <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+          <div *ngIf="f.category.errors.required">Sale is required</div>
+        </div>
+        <select type="text" name="category" formControlName="category" [ngClass]="{ 'is-invalid': submitted && f.category.errors }" [(ngModel)]="product.category" required="">
+          <option *ngFor="let category of categorys" value="{{category.name}}">{{category.name}}</option>
+        </select>
+
+        <label >Description</label><br>
+        <div *ngIf="submitted && f.productDescription.errors" class="invalid-feedback">
+          <div *ngIf="f.productDescription.errors.required">Description is required</div>
+        </div>
+        <textarea style="width: 434px;height: 157px;" type="text" name="productDescription" formControlName="productDescription" [ngClass]="{ 'is-invalid': submitted && f.productDescription.errors }" [(ngModel)]="product.productDescription"  placeholder="Description" required=""></textarea>
+        <input type="submit" value="Update">
+      </form>
+      <div class="sign-down">
+        <h5><a routerLink="/admin/product">Go to Product Manager</a></h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="signup-main" style="float: left; margin-left: 30px;">
+    <div class="signup-head">
+      <h1>Image</h1>
+    </div>
+    <div class="signup-block">
+      <img style="margin-left: 60px" width="80%" height="500px"  src="{{product.productImage}}" alt="">
+    </div>
+  </div>
+  <div class="clearfix"> </div>
+</div>

@@ -1,0 +1,66 @@
+<!--mainpage chit-chating-->
+<div class="chit-chat-layer1">
+  <div class="col-md-12 chit-chat-layer1-left">
+    <div class="work-progres">
+      <div class="chit-chat-heading">
+        order Manager
+        <div class="form-group" style="float: left ; width: 100%">
+          <a class="btn btn-default" routerLink="/admin/order/add" style="float: left">Add order</a>
+          <input style="width: 500px;float: left;margin:0px 10px" [(ngModel)]="searchText" autocomplete="off" class="form-control" name="search" placeholder="Enter keywords" type="text">
+          <select [(ngModel)]="pageSize" class="form-control" style="width: auto;float: right">
+            <option *ngIf="orders?.length>=4" [ngValue]="4">4 order per page</option>
+            <option *ngIf="orders?.length>=8"  [ngValue]="8">8 order per page</option>
+            <option *ngIf="orders?.length>=12" [ngValue]="12">12 order per page</option>
+            <option [ngValue]="orders?.length">All order per page</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-responsive" style="width: 100%">
+        <table class="table table-hover" id="myTable">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Tên khách hàng</th>
+            <th>Địa chỉ</th>
+            <th>Email</th>
+            <th>Số điện thoại</th>
+            <th>Ngày đặt hàng</th>
+            <th>Trạng thái</th>
+            <th>Tùy chọn</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let order of orders  | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize| filter:searchText; index as i">
+            <td>{{i+1}}</td>
+            <td>{{order.receiptName}}</td>
+            <td>
+              {{order.receiptAddress}}
+            </td>
+            <td>{{order.receiptEmail}}</td>
+            <td>{{order.receiptPhone}}</td>
+            <td>{{order.receiptDate | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
+            <td *ngIf="order.receiptStatus==true">
+              <a  class="btn btn-default">Gửi hàng</a>
+            </td>
+            <td *ngIf="order.receiptStatus==false">Đã gửi hàng</td>
+            <td>
+              <a class="btn btn-default" routerLink="/admin/order/{{order.receiptId}}" style="margin-right: 10px">Chi tiết</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <nav style=" text-align: center; padding: 50px;">
+        <!-- pagination-->
+        <ul class="pagination pagination-lg">
+          <ngb-pagination
+            [(page)]="page"
+            [collectionSize]="orders.length"
+            [pageSize]="pageSize">
+          </ngb-pagination>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>

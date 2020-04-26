@@ -1,0 +1,145 @@
+<app-home-header></app-home-header>
+<div class="page-head_agile_info_w3l">
+  <div class="container">
+    <h3>{{product?.productName}}</h3>
+    <!--/w3_short-->
+    <div class="services-breadcrumb">
+      <div class="agile_inner_breadcrumb">
+
+        <ul class="w3_short">
+          <li><a routerLink="/home">Home</a><i>|</i></li>
+          <li>{{product?.productName}}</li>
+        </ul>
+      </div>
+    </div>
+    <!--//w3_short-->
+  </div>
+</div>
+<div class="banner-bootom-w3-agileits">
+  <div class="container">
+    <div *ngIf="product" class="col-md-4 single-right-left ">
+      <div class="grid images_3_of_2">
+        <div class="flexslider">
+
+          <ul class="slides">
+            <div class="thumb-image"><img src="{{product.productImage}}"></div>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 single-right-left simpleCart_shelfItem">
+      <h3>{{product?.productName}}</h3>
+      <p>
+        <span class="item_price">{{product?.productPrice-(product?.productPrice/100)*product?.productSale| number}} VND</span>
+        <del *ngIf="product?.productSale!=0">${{product?.productPrice| number}} VND</del>
+      </p>
+      <div class="rating1">
+						<span class="starRating">
+							<input id="rating5" name="rating" type="radio" value="5">
+							<label for="rating5">5</label>
+							<input id="rating4" name="rating" type="radio" value="4">
+							<label for="rating4">4</label>
+							<input checked="" id="rating3" name="rating" type="radio" value="3">
+							<label for="rating3">3</label>
+							<input id="rating2" name="rating" type="radio" value="2">
+							<label for="rating2">2</label>
+							<input id="rating1" name="rating" type="radio" value="1">
+							<label for="rating1">1</label>
+						</span>
+      </div>
+      <div class="description">
+        <h5>Check delivery, payment options and charges at your location</h5>
+        <form action="#" method="post">
+          <input onblur="if (this.value == '') {this.value = 'Enter pincode';}" onfocus="this.value = '';" required=""
+                 type="text" value="Enter pincode">
+          <input type="submit" value="Check">
+        </form>
+      </div>
+      <div class="color-quality">
+        <div class="color-quality-right">
+          <b><h5>Remain :{{product?.productTotal}} products </h5></b>
+          <h5>Quality : </h5>
+          <input max="{{product?.productTotal}}" class="form-control text-center" name="total" type="number" min="1" value="1" style="width: 100px">
+        </div>
+      </div>
+      <div class="occasion-cart">
+        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+          <input class="button" name="submit" type="submit" value="Add to cart">
+        </div>
+      </div>
+      <ul class="social-nav model-3d-0 footer-social w3_agile_social single_page_w3ls">
+        <li class="share">Share On :</li>
+        <li><a class="facebook" href="#">
+          <div class="front"><i aria-hidden="true" class="fa fa-facebook"></i></div>
+          <div class="back"><i aria-hidden="true" class="fa fa-facebook"></i></div>
+        </a></li>
+        <li><a class="twitter" href="#">
+          <div class="front"><i aria-hidden="true" class="fa fa-twitter"></i></div>
+          <div class="back"><i aria-hidden="true" class="fa fa-twitter"></i></div>
+        </a></li>
+        <li><a class="instagram" href="#">
+          <div class="front"><i aria-hidden="true" class="fa fa-instagram"></i></div>
+          <div class="back"><i aria-hidden="true" class="fa fa-instagram"></i></div>
+        </a></li>
+        <li><a class="pinterest" href="#">
+          <div class="front"><i aria-hidden="true" class="fa fa-linkedin"></i></div>
+          <div class="back"><i aria-hidden="true" class="fa fa-linkedin"></i></div>
+        </a></li>
+      </ul>
+
+    </div>
+    <div class="clearfix"></div>
+    <div class="responsive_tabs_agileits">
+      <div id="horizontalTab">
+        <ul class="resp-tabs-list">
+          <li>Description</li>
+        </ul>
+        <div class="resp-tabs-container">
+          <!--/tab_one-->
+          <div class="tab1">
+
+            <div class="single_page_agile_its_w3ls">
+              <h6>{{product?.productName}}</h6>
+              <p>{{product?.productDescription}}</p>
+            </div>
+          </div>
+          <!--//tab_one-->
+        </div>
+      </div>
+    </div>
+    <div class="w3_agile_latest_arrivals">
+      <h3 class="wthree_text_info">Featured <span>Arrivals</span></h3>
+      <div *ngFor="let new of newProduct | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize"
+           class="col-md-3 product-men single">
+        <div class="men-pro-item simpleCart_shelfItem">
+          <div class="men-thumb-item">
+            <img alt="" class="pro-image-front" height="275px" src="{{new.productImage}}" width="255px">
+            <img alt="" class="pro-image-back" height="275px" src="{{new.productImage}}" width="255px">
+            <div class="men-cart-pro">
+              <div class="inner-men-cart-pro">
+                <a class="link-product-add-cart" routerLink="/product/{{new.id}}">Quick View</a>
+              </div>
+            </div>
+            <span class="product-new-top" *ngIf="new.productSale==0">New</span>
+            <span class="product-new-top" *ngIf="new.productSale!=0">{{new.productSale}}%</span>
+          </div>
+          <div class="item-info-product ">
+            <h4><a href="single.html">{{new.productName}}</a></h4>
+            <div class="info-product-price">
+              <span class="item_price" style="font-size: 13px;">
+                {{new.productPrice-(new.productPrice/100)*new.productSale| number}} VND</span>
+              <del style="font-size: 13px;" *ngIf="new.productSale!=0">{{new.productPrice| number}} VND</del>
+            </div>
+            <div>
+              <a class="hvr-outline-out button2" [routerLink]="['/cart',{id : new.id}]" style="padding: 10px;font-weight: bold;color:aliceblue; ">Add to cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <!--//slider_owl-->
+    </div>
+  </div>
+</div>
+<app-home-footer></app-home-footer>

@@ -1,0 +1,64 @@
+<!--mainpage chit-chating-->
+<div class="chit-chat-layer1">
+  <div class="col-md-12 chit-chat-layer1-left">
+    <div class="work-progres">
+      <div class="chit-chat-heading">
+        Product Manager
+        <div class="form-group" style="float: left ; width: 100%">
+          <a class="btn btn-default" routerLink="/admin/product/add" style="float: left">Add Product</a>
+          <input style="width: 500px;float: left;margin:0px 10px" (keyup)="load()" [(ngModel)]="searchText" autocomplete="off" class="form-control" name="search" placeholder="Enter keywords" type="text">
+          <select [(ngModel)]="pageSize" class="form-control" style="width: auto;float: right">
+            <option *ngIf="products?.length>=4" [ngValue]="4">4 product per page</option>
+            <option *ngIf="products?.length>=8"  [ngValue]="8">8 product per page</option>
+            <option *ngIf="products?.length>=12" [ngValue]="12">12 product per page</option>
+            <option [ngValue]="products?.length">All product per page</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-responsive" style="width: 100%">
+        <table class="table table-hover" id="myTable">
+          <thead>
+          <tr>
+            <th>Images</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Sale</th>
+            <th>Category</th>
+            <th>Option</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let product of products  | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize | filter:searchText">
+            <td><img alt="" height="70px" src="{{product.productImage}}" width="70px"></td>
+            <td>
+              <p>{{product.productName}}</p>
+              <a class="btn btn-default" routerLink="/product/{{product.id}}"> <i class="fa fa-eye"></i></a>
+            </td>
+            <td>{{product.productPrice| number}}$</td>
+            <td>{{product.productTotal}}</td>
+            <td>{{product.productSale}}%</td>
+            <td>{{product.category}}</td>
+            <td>
+              <a class="btn btn-default" routerLink="/admin/product/edit/{{product.id}}" style="margin-right: 10px"><i
+                class="fa fa-edit"></i></a>
+              <a (click)="removeProduct(product.id)" class="btn btn-default"><i class="fa fa-remove"></i></a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <nav style=" text-align: center; padding: 50px;">
+        <!-- pagination-->
+        <ul class="pagination pagination-lg">
+          <ngb-pagination
+            [(page)]="page"
+            [collectionSize]="products.length"
+            [pageSize]="pageSize">
+          </ngb-pagination>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>

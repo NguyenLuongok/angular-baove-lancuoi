@@ -1,0 +1,93 @@
+<app-home-header></app-home-header>
+<div class="container" *ngIf="items.length==0">
+  <h2 class="text-center" style="margin: 50px 0px;font-weight: bold;">Hiện tại bạn không có sản phẩm trong giỏ hàng !</h2>
+  <div style="margin: 20px 0px 20px 305px;">
+    <img  style=" display: block" *ngIf="items.length==0" src="../../../assets/images/empty-cart.png" alt="">
+  </div>
+  <h5 style="margin: 20px 0px;" class="text-center">Vui lòng thêm sản phẩm vào giỏ hàng khi thanh toán !</h5>
+</div>
+<div class="container" *ngIf="items.length!=0">
+  <h2 class="text-center" style="margin: 50px 0px;font-weight: bold;">Thanh toán đơn hàng</h2>
+
+  <table id="cart" class="table table-hover table-condensed">
+    <thead>
+    <tr>
+      <th class="text-center" style="width:50%">Sản phẩm</th>
+      <th style="width:15%">Giá </th>
+      <th style="width:15%"  class="text-center" >Số lượng</th>
+      <th style="width:22%" class="text-center">Thành tiền</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of items">
+      <td data-th="Product">
+        <a routerLink="/product/{{item.product.id}}" style="color: #34495e">
+          <div class="row">
+            <div class="col-sm-2 hidden-xs"><img width="80px" height="80px" src="{{item.product.productImage}}" alt="">
+            </div>
+            <div class="col-sm-10">
+              <h5 class="nomargin">{{item.product.productName}}</h5>
+            </div>
+          </div>
+        </a>
+      </td>
+      <td data-th="Price">{{item.product.productPrice-(item.product.productPrice/100)*item.product.productSale| number}} VND</td>
+      <td data-th="Quantity" class="text-center">{{item.quantity}}</td>
+      <td data-th="Subtotal" class="text-center">{{(item.product.productPrice-(item.product.productPrice/100)*item.product.productSale)*item.quantity| number}} VND</td>
+    </tr>
+    </tbody><tfoot>
+  <tr class="visible-xs">
+    <td class="text-center">
+    </td>
+  </tr>
+  <tr>
+    <td><a routerLink="/cart" class="btn btn-warning"><b><i class="fa fa-angle-left"></i> Về trang giỏ hàng</b></a>
+    </td>
+    <td colspan="2" class="hidden-xs"> </td>
+    <td class="hidden-xs text-center"><strong>Tổng tiền : {{total| number}} VND</strong>
+  </tr>
+  </tfoot>
+  </table>
+  <div class="container">
+    <div class="col-md-6 contact-form" style="margin:20px 0px">
+      <h4 class="white-w3ls">Đặt hàng</h4>
+      <form [formGroup]="registerForm" (ngSubmit)="addOrder()">
+        <div class="styled-input agile-styled-input-top">
+          <input type="text" name="receiptName"  formControlName="receiptName" [ngClass]="{ 'is-invalid': submitted && f.receiptName.errors }" [(ngModel)]="order.receiptName" required="">
+          <label>Tên khách hàng (*)</label>
+          <div *ngIf="submitted && f.receiptName.errors" class="invalid-feedback">
+            <div *ngIf="f.receiptName.errors.required">Tên khách hàng không được để trống !</div>
+          </div>
+          <span></span>
+        </div>
+        <div class="styled-input agile-styled-input-top">
+          <input type="text" name="receiptEmail" formControlName="receiptEmail" [ngClass]="{ 'is-invalid': submitted && f.receiptEmail.errors }" [(ngModel)]="order.receiptEmail" required="">
+          <label>Địa chỉ email (*)</label>
+          <div *ngIf="submitted && f.receiptEmail.errors" class="invalid-feedback">
+            <div *ngIf="f.receiptEmail.errors.required">Email không được để trống !</div>
+          </div>
+          <span></span>
+        </div>
+        <div class="styled-input">
+          <input type="text" name="receiptPhone" formControlName="receiptPhone" [ngClass]="{ 'is-invalid': submitted && f.receiptPhone.errors }" [(ngModel)]="order.receiptPhone" required="">
+          <label>Số điện thoại (*)</label>
+          <div *ngIf="submitted && f.receiptPhone.errors" class="invalid-feedback">
+            <div *ngIf="f.receiptPhone.errors.required">Số điện thoại không được để trống !</div>
+          </div>
+          <span></span>
+        </div>
+        <div class="styled-input">
+          <input type="text" name="receiptAddress" formControlName="receiptAddress" [ngClass]="{ 'is-invalid': submitted && f.receiptAddress.errors }" [(ngModel)]="order.receiptAddress" required="">
+          <label>Địa chỉ nhận hàng (*)</label>
+          <div *ngIf="submitted && f.receiptAddress.errors" class="invalid-feedback">
+            <div *ngIf="f.receiptAddress.errors.required">Địa chỉ khách hàng không được để trống !</div>
+          </div>
+          <span></span>
+        </div>
+        <input type="submit" value="Đặt Hàng">
+      </form>
+    </div>
+  </div>
+  <div class="clearfix"> </div>
+</div>
+<app-home-footer></app-home-footer>
